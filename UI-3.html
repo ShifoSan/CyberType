@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>CyberType - Typing Test</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+<script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "primary": "#0dccf2",
+            "background-light": "#f5f8f8",
+            "background-dark": "#0A0A0A",
+          },
+          fontFamily: {
+            "display": ["Space Grotesk", "sans-serif"]
+          },
+          borderRadius: {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          boxShadow: {
+            'glow': '0 0 15px 5px rgba(13, 204, 242, 0.3)',
+            'glow-lg': '0 0 25px 8px rgba(13, 204, 242, 0.4)',
+          },
+          keyframes: {
+            gridPan: {
+                '0%': { backgroundPosition: '0% 50%' },
+                '100%': { backgroundPosition: '0% 0%' },
+            },
+            pulse: {
+                '0%, 100%': { borderColor: 'rgba(13, 204, 242, 0.4)' },
+                '50%': { borderColor: 'rgba(13, 204, 242, 1)' },
+            },
+            blink: {
+                '50%': { opacity: '0.2' },
+            }
+          },
+          animation: {
+            'grid-pan': 'gridPan 30s linear infinite',
+            'pulse-border': 'pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+            'blinking-dot': 'blink 1.5s infinite step-end',
+          }
+        },
+      },
+    }
+  </script>
+<style>
+    .grid-background {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image:
+        linear-gradient(to right,
+          rgba(13, 204, 242, 0.4) 1px,
+          transparent 1px),
+        linear-gradient(to bottom,
+          rgba(13, 204, 242, 0.4) 1px,
+          transparent 1px);
+      background-size: 5rem 5rem;
+      mask-image: radial-gradient(ellipse 90% 90% at 50% 50%, black 40%, transparent 100%);
+      perspective: 500px;
+      overflow: hidden;
+      z-index: 0;
+      animation: grid-pan 30s linear infinite;
+    }
+  </style>
+</head>
+<body class="font-display">
+<div class="relative flex h-screen min-h-screen w-full flex-col bg-background-light dark:bg-background-dark group/design-root overflow-hidden">
+<div class="grid-background"></div>
+<div class="relative z-10 layout-container flex h-full grow flex-col">
+<div class="px-4 sm:px-10 lg:px-20 xl:px-40 flex flex-1 justify-center py-5">
+<div class="layout-content-container flex flex-col w-full max-w-4xl flex-1">
+<header class="flex items-center justify-between whitespace-nowrap px-4 sm:px-10 py-3">
+<div class="flex items-center gap-4 text-white">
+<div class="size-6 text-primary">
+<svg fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path clip-rule="evenodd" d="M24 18.4228L42 11.475V34.3663C42 34.7796 41.7457 35.1504 41.3601 35.2992L24 42V18.4228Z" fill="currentColor" fill-rule="evenodd"></path>
+<path clip-rule="evenodd" d="M24 8.18819L33.4123 11.574L24 15.2071L14.5877 11.574L24 8.18819ZM9 15.8487L21 20.4805V37.6263L9 32.9945V15.8487ZM27 37.6263V20.4805L39 15.8487V32.9945L27 37.6263ZM25.354 2.29885C24.4788 1.98402 23.5212 1.98402 22.646 2.29885L4.98454 8.65208C3.7939 9.08038 3 10.2097 3 11.475V34.3663C3 36.0196 4.01719 37.5026 5.55962 38.098L22.9197 44.7987C23.6149 45.0671 24.3851 45.0671 25.0803 44.7987L42.4404 38.098C43.9828 37.5026 45 36.0196 45 34.3663V11.475C45 10.2097 44.2061 9.08038 43.0155 8.65208L25.354 2.29885Z" fill="currentColor" fill-rule="evenodd"></path>
+</svg>
+</div>
+<h2 class="text-white text-xl font-bold leading-tight tracking-[-0.015em]">CyberType</h2>
+</div>
+<div class="hidden sm:flex flex-1 justify-end items-center gap-8">
+<div class="flex items-center gap-9">
+<a class="text-[#888888] hover:text-primary transition-all duration-300 text-sm font-medium leading-normal" href="#">Test</a>
+<a class="text-[#888888] hover:text-primary transition-all duration-300 text-sm font-medium leading-normal" href="#">Leaderboard</a>
+<a class="text-[#888888] hover:text-primary transition-all duration-300 text-sm font-medium leading-normal" href="#">Settings</a>
+</div>
+<button class="flex max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 bg-black/20 text-white hover:text-primary hover:bg-black/40 transition-all duration-300 gap-2 text-sm font-bold leading-normal tracking-[0.015em] min-w-0 px-2.5">
+<span class="material-symbols-outlined text-xl">account_circle</span>
+</button>
+</div>
+<div class="sm:hidden flex items-center">
+<button class="flex items-center justify-center p-2 rounded-lg text-white hover:text-primary hover:bg-primary/10 transition-all duration-300">
+<span class="material-symbols-outlined">menu</span>
+</button>
+</div>
+</header>
+<main class="flex flex-col flex-grow justify-center items-center gap-8 px-4">
+<div class="flex flex-col items-center gap-4">
+<div class="flex items-center justify-center gap-4">
+<button class="px-4 py-1.5 rounded-full border border-primary/50 text-[#888888] hover:text-white hover:border-primary active:bg-primary/20 transition-all duration-300 text-sm font-medium">30s</button>
+<button class="px-4 py-1.5 rounded-full border border-primary text-white bg-primary/20 transition-all duration-300 text-sm font-medium">60s</button>
+<button class="px-4 py-1.5 rounded-full border border-primary/50 text-[#888888] hover:text-white hover:border-primary active:bg-primary/20 transition-all duration-300 text-sm font-medium">90s</button>
+</div>
+<div class="text-primary text-4xl font-bold" data-metric="timer">01:00</div>
+</div>
+<div class="flex flex-row flex-wrap gap-4 sm:gap-8 justify-center text-center">
+<div class="flex flex-col gap-2 items-center">
+<div class="flex items-center gap-2">
+<p class="text-primary tracking-light text-5xl sm:text-7xl font-bold leading-tight" data-metric="wpm">0</p>
+<div class="size-3 bg-primary rounded-full animate-blinking-dot"></div>
+</div>
+<p class="text-[#888888] text-base font-medium leading-normal">WPM</p>
+</div>
+<div class="flex flex-col gap-2 items-center">
+<div class="flex items-center gap-2">
+<p class="text-primary tracking-light text-5xl sm:text-7xl font-bold leading-tight" data-metric="cpm">0</p>
+<div class="size-3 bg-primary rounded-full animate-blinking-dot"></div>
+</div>
+<p class="text-[#888888] text-base font-medium leading-normal">CPM</p>
+</div>
+<div class="flex flex-col gap-2 items-center">
+<div class="flex items-center gap-2">
+<p class="text-primary tracking-light text-5xl sm:text-7xl font-bold leading-tight" data-metric="accuracy">100%</p>
+<div class="size-3 bg-primary rounded-full animate-blinking-dot"></div>
+</div>
+<p class="text-[#888888] text-base font-medium leading-normal">Accuracy</p>
+</div>
+</div>
+<div class="w-full max-w-3xl">
+<p class="text-[#888888] text-xl sm:text-2xl font-normal leading-relaxed tracking-wider text-left bg-black/20 p-6 rounded-lg select-none">
+<span class="current">T</span><span class="pending">h</span><span class="pending">e</span><span class="pending"> </span><span class="correct">q</span><span class="correct">u</span><span class="correct">i</span><span class="correct">c</span><span class="correct">k</span><span class="pending"> </span><span class="incorrect">b</span><span class="incorrect">r</span><span class="incorrect">o</span><span class="incorrect">w</span><span class="incorrect">n</span><span class="pending"> </span><span class="pending">f</span><span class="pending">o</span><span class="pending">x</span><span class="pending"> </span><span class="pending">j</span><span class="pending">u</span><span class="pending">m</span><span class="pending">p</span><span class="pending">s</span><span class="pending">.</span>
+</p>
+</div>
+<div class="w-full max-w-3xl flex items-center justify-center px-4 py-3">
+<input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-[#EAEAEA] focus:outline-none focus:ring-2 focus:ring-primary focus:shadow-glow-lg transition-all duration-300 border border-primary/30 bg-black/30 backdrop-blur-sm h-12 sm:h-16 placeholder:text-[#888888] p-4 text-xl sm:text-2xl font-normal leading-normal data-[typing=true]:animate-pulse-border" data-state="idle" placeholder="Start typing..." value=""/>
+</div>
+</main>
+<footer class="text-center py-4 px-4">
+<p class="text-[#888888] text-sm">Owned and created by ShifoSan</p>
+</footer>
+</div>
+</div>
+</div>
+<div class="fixed inset-0 z-50 flex items-center justify-center bg-background-dark/50 backdrop-blur-sm hidden" id="results-modal">
+<div class="relative w-full max-w-md p-6 m-4 bg-black/50 border border-primary/30 rounded-xl shadow-glow-lg text-white flex flex-col items-center gap-6">
+<h2 class="text-3xl font-bold text-primary tracking-wider">Test Complete</h2>
+<div class="grid grid-cols-3 gap-4 w-full text-center">
+<div class="flex flex-col gap-1">
+<p class="text-4xl font-bold text-primary">102</p>
+<p class="text-[#888888] text-sm">WPM</p>
+</div>
+<div class="flex flex-col gap-1">
+<p class="text-4xl font-bold text-primary">510</p>
+<p class="text-[#888888] text-sm">CPM</p>
+</div>
+<div class="flex flex-col gap-1">
+<p class="text-4xl font-bold text-primary">98%</p>
+<p class="text-[#888888] text-sm">Accuracy</p>
+</div>
+</div>
+<div class="flex items-center justify-center gap-4 w-full pt-4">
+<button class="flex-1 px-6 py-3 rounded-lg bg-primary/20 border border-primary text-primary font-bold hover:bg-primary/30 hover:shadow-glow transition-all duration-300">New Test</button>
+<button class="flex-1 px-6 py-3 rounded-lg bg-transparent border border-primary/50 text-[#888888] font-bold hover:text-primary hover:border-primary transition-all duration-300">Share</button>
+</div>
+</div>
+</div>
+</div>
+<style>
+  .pending { color: #888888; }
+  .correct { color: #22c55e; }.incorrect { color: #ef4444; }.current {
+    background-color: rgba(13, 204, 242, 0.2);
+    color: #0dccf2;border-radius: 2px;
+  }
+</style>
+</body></html>
